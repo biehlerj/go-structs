@@ -155,6 +155,17 @@ func TestSinglyLinkedList_Display(t *testing.T) {
 	})
 }
 
+func TestSinglyLinkedList_Empty(t *testing.T) {
+	t.Run("Empty() returns true on an empty list", func(t *testing.T) {
+		list := emptyList()
+		assert.Equal(t, true, list.Empty())
+	})
+	t.Run("Empty() returns false on a non-empty list", func(t *testing.T) {
+		list := oneNodeList()
+		assert.Equal(t, false, list.Empty())
+	})
+}
+
 var head = &Node{
 	value: 100,
 	next:  second,
