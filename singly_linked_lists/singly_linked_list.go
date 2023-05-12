@@ -16,8 +16,7 @@ type Node struct {
 // A List at the minimum has a head and tail Node
 // The head and tail Node can be the same Node or nil
 type List struct {
-	head *Node
-	tail *Node
+	head, tail *Node
 }
 
 // Push adds a new Node at the beginning of a List
@@ -40,24 +39,22 @@ func (L *List) Push(value any) {
 func (L *List) InsertBefore(node *Node, value any) {
 	if L.Empty() || L.head == node {
 		L.Push(value)
-	} else {
-		var prev *Node
-		curr := L.head
+	}
+	var prev *Node
+	curr := L.head
 
-		for curr != nil && curr != node {
-			prev = curr
-			curr = curr.next
-		}
+	for curr != nil && curr != node {
+		prev = curr
+		curr = curr.next
+	}
 
-		if curr != nil {
-			prev.next = &Node{
-				value: value,
-				next:  curr,
-			}
-		} else {
-			L.Append(value)
+	if curr != nil {
+		prev.next = &Node{
+			value: value,
+			next:  curr,
 		}
 	}
+	L.Append(value)
 }
 
 // InsertAfter adds a new Node after the given Node
@@ -85,10 +82,9 @@ func (L *List) Append(value any) {
 	if L.tail == nil {
 		L.head = newNode
 		L.tail = newNode
-	} else {
-		L.tail.next = newNode
-		L.tail = newNode
 	}
+	L.tail.next = newNode
+	L.tail = newNode
 }
 
 // DeleteLast removes the last Node in the List
