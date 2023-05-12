@@ -5,7 +5,7 @@ Repository for implementing common data structures in Go
 ## Data Structures
 
 1. Linked Lists:
-   1. Singly Linked Lists
+   1. [Singly Linked Lists](./singly_linked_lists/README.md)
    2. Doubly Linked Lists
    3. Double Circular Linked Lists
 2. Stacks
