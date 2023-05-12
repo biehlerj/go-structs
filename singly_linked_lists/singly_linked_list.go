@@ -1,3 +1,4 @@
+// Package singly_linked_list implements a Singly Linked List
 package singly_linked_list
 
 import (
@@ -5,17 +6,23 @@ import (
 	"fmt"
 )
 
+// A Node is a singular item in a linked list
 type Node struct {
-	value interface{}
+	value any
 	next  *Node
 }
 
+// A List is constructed of Nodes
+// A List at the minimum has a head and tail Node
+// The head and tail Node can be the same Node or nil
 type List struct {
 	head *Node
 	tail *Node
 }
 
-func (L *List) Push(value interface{}) {
+// Push adds a new Node at the beginning of a List
+// It takes a value which can be any type
+func (L *List) Push(value any) {
 	newNode := &Node{
 		value: value,
 		next:  L.head,
@@ -27,7 +34,10 @@ func (L *List) Push(value interface{}) {
 	}
 }
 
-func (L *List) InsertBefore(node *Node, value interface{}) {
+// InsertBefore adds a Node to the List before the given Node
+// It requires the Node to insert before and a value
+// The value can be any type
+func (L *List) InsertBefore(node *Node, value any) {
 	if L.Empty() || L.head == node {
 		L.Push(value)
 	} else {
@@ -50,7 +60,10 @@ func (L *List) InsertBefore(node *Node, value interface{}) {
 	}
 }
 
-func (L *List) InsertAfter(node *Node, value interface{}) {
+// InsertAfter adds a new Node after the given Node
+// It requires the Node to insert after and a value
+// The value can be any type
+func (L *List) InsertAfter(node *Node, value any) {
 	newNode := &Node{
 		value: value,
 		next:  node.next,
@@ -62,7 +75,9 @@ func (L *List) InsertAfter(node *Node, value interface{}) {
 	}
 }
 
-func (L *List) Append(value interface{}) {
+// Append adds a new Node to the end of the List
+// It requires a value which can be any type
+func (L *List) Append(value any) {
 	newNode := &Node{
 		value: value,
 		next:  nil,
@@ -76,6 +91,8 @@ func (L *List) Append(value interface{}) {
 	}
 }
 
+// DeleteLast removes the last Node in the List
+// It updates the tail value of the List
 func (L *List) DeleteLast() error {
 	if L.Empty() {
 		return errors.New("can't delete node from empty list")
@@ -98,6 +115,8 @@ func (L *List) DeleteLast() error {
 	return nil
 }
 
+// DeleteFirst removes the first Node in the List
+// It updates the head value of the List
 func (L *List) DeleteFirst() error {
 	if L.Empty() {
 		return errors.New("can't delete node from empty list")
@@ -110,7 +129,8 @@ func (L *List) DeleteFirst() error {
 	return nil
 }
 
-func (L *List) Delete(value interface{}) error {
+// Delete removes the Node with the given value from the List
+func (L *List) Delete(value any) error {
 	if L.Empty() {
 		return errors.New("can't delete node from empty list")
 	}
@@ -129,10 +149,12 @@ func (L *List) Delete(value interface{}) error {
 	return errors.New("can't find given node")
 }
 
+// Empty checks if the List has any Nodes
 func (L *List) Empty() bool {
 	return L.head == nil
 }
 
+// Displays the List
 func (L *List) Display() {
 	list := L.head
 
